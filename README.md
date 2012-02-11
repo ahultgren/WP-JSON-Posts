@@ -3,6 +3,10 @@
 Echoes posts as JSON instead of using the template. 
 Works for the front page, static pages, single posts, custom post types, archives etc.
 
+Update: Now with [WP Duplicate Post Prevention](https://github.com/ahultgren/WP-Duplicate-Plugin-Prevention) integrated!
+This means you can use WP JSON Posts untouched in your plugins without fear of any complications 
+if another plugin is also using WP JSON Posts.
+
 _Note: Currently this plugin does not support custom queries that might be added in the tempalate. 
 Only built in url's and their original results may be fetched._
 
