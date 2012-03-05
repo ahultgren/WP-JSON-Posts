@@ -42,10 +42,10 @@ those found in the returned data. Multiple values are dash-separated (-).
 Thus if you see that you don't need `the_post_thumbnail` or `custom_fields` you simply send 
 `&exclude=the_post_thumbnail-custom_fields`.
 
-###Number of posts
+###Posts per page
 
 If you want a different number of posts returned than what the default wp_query would give you,
-simply append `&number_of_posts=2` to the URL. Of course this will not work for a single post or page.
+simply append `&posts_per_page=2` to the URL. Of course this will not work for a single post or page.
 
 ###Offset
 
