@@ -3,6 +3,10 @@
 Echoes posts as JSON instead of using the template. 
 Works for the front page, static pages, single posts, custom post types, archives etc.
 
+Update: Now with [WP Duplicate Post Prevention](https://github.com/ahultgren/WP-Duplicate-Plugin-Prevention) integrated!
+This means you can use WP JSON Posts untouched in your plugins without fear of any complications 
+if another plugin is also using WP JSON Posts.
+
 _Note: Currently this plugin does not support custom queries that might be added in the tempalate. 
 Only built in url's and their original results may be fetched._
 
@@ -38,10 +42,10 @@ those found in the returned data. Multiple values are dash-separated (-).
 Thus if you see that you don't need `the_post_thumbnail` or `custom_fields` you simply send 
 `&exclude=the_post_thumbnail-custom_fields`.
 
-###Number of posts
+###Posts per page
 
 If you want a different number of posts returned than what the default wp_query would give you,
-simply append `&number_of_posts=2` to the URL. Of course this will not work for a single post or page.
+simply append `&posts_per_page=2` to the URL. Of course this will not work for a single post or page.
 
 ###Offset
 

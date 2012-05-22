@@ -126,3 +126,25 @@ if( !function_exists('wjp_get_the_content_formatted') ){
 		return $content;
 	}
 }
+
+/** WP Duplicate Plugin Prevention
+ * The following code is the plugin WP Duplicate Plugin Prevention.
+ * It's used to allow WP JSON Posts to be used untouched in any plugin simultaneously without fear of
+ * any complications or confusion for the end user.
+ * Avaliable at github: https://github.com/ahultgren/WP-Duplicate-Plugin-Prevention
+*/
+
+add_filter( 'all_plugins', function ( $plugins ){
+	// Plugin vars
+	$plugin_data = get_plugin_data( __FILE__ );
+	$plugin_name = $plugin_data['Name'];
+	$plugin_dir = plugin_basename(__FILE__);
+	
+	// Loop through all plugins and remove those that have the same name but not the same directory AND is not installed
+	foreach( $plugins as $plugin => $data ){
+		if( $plugin . '' !== $plugin_dir && $data['Title'] . '' === $plugin_name && !is_plugin_active($plugin) ){
+			unset($plugins[$plugin]);
+		}
+	}
+	return $plugins;
+});
