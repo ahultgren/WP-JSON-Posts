@@ -3,7 +3,7 @@
 Plugin Name: WP JSON Posts
 Plugin URI: http://andreashultgren.se/
 Description: My foundation for all other AJAX-based plugins. Echoes posts as JSON instead of using the template. Works for the front page, static pages, single posts, custom post types, archives etc.
-Version: 1.0.4/12.0210
+Version: 1.1.0/12.1018
 Author: Andreas Hultgren
 Author URI: http://andreashultgren.se/
 License: GPL3
