@@ -78,13 +78,26 @@ if( !function_exists('wp_jsonposts_ti') ){
 					
 					// Add custom fields
 					$cfs = get_post_custom();
-					// Fulhack to remove built in cf's
+					// Fulhack to remove built in cfs
 					//## Add possibility to choose whether or not the built in cf's should be returned
 					foreach( $cfs as $key => $value ){
 						if( substr($key, 0, 1) === '_' ){
 							unset($cfs[$key]);
 						}
 					}
+
+					// Remove unwanted cfs
+					if( isset($_GET['exclude_custom_fields']) ){
+						$excludes = explode('-', $_GET['exclude_custom_fields']);
+
+						foreach( $excludes as $exclude ){
+							if( array_key_exists(htmlspecialchars($exclude), $cfs) ){
+								unset($cfs[htmlspecialchars($exclude)]);
+							}
+						}
+					}
+
+					// Append cfs to post
 					if( count($cfs) ){
 						$the_post['custom_fields'] = $cfs;
 					}
@@ -101,12 +114,12 @@ if( !function_exists('wp_jsonposts_ti') ){
 						}
 					}
 					
-					// The magic
+					// Append post to result
 					$json[] = $the_post;
 				endwhile;
 			endif;
 			
-			// Print the JSON
+			// Print JSON
 			echo json_encode($json);
 			
 			// Stop the template from printing
