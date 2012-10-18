@@ -3,7 +3,7 @@
 Plugin Name: WP JSON Posts
 Plugin URI: http://andreashultgren.se/
 Description: My foundation for all other AJAX-based plugins. Echoes posts as JSON instead of using the template. Works for the front page, static pages, single posts, custom post types, archives etc.
-Version: 1.0.4/12.0210
+Version: 1.1.0/12.1018
 Author: Andreas Hultgren
 Author URI: http://andreashultgren.se/
 License: GPL3
@@ -78,13 +78,26 @@ if( !function_exists('wp_jsonposts_ti') ){
 					
 					// Add custom fields
 					$cfs = get_post_custom();
-					// Fulhack to remove built in cf's
+					// Fulhack to remove built in cfs
 					//## Add possibility to choose whether or not the built in cf's should be returned
 					foreach( $cfs as $key => $value ){
 						if( substr($key, 0, 1) === '_' ){
 							unset($cfs[$key]);
 						}
 					}
+
+					// Remove unwanted cfs
+					if( isset($_GET['exclude_custom_fields']) ){
+						$excludes = explode('-', $_GET['exclude_custom_fields']);
+
+						foreach( $excludes as $exclude ){
+							if( array_key_exists(htmlspecialchars($exclude), $cfs) ){
+								unset($cfs[htmlspecialchars($exclude)]);
+							}
+						}
+					}
+
+					// Append cfs to post
 					if( count($cfs) ){
 						$the_post['custom_fields'] = $cfs;
 					}
@@ -101,12 +114,12 @@ if( !function_exists('wp_jsonposts_ti') ){
 						}
 					}
 					
-					// The magic
+					// Append post to result
 					$json[] = $the_post;
 				endwhile;
 			endif;
 			
-			// Print the JSON
+			// Print JSON
 			echo json_encode($json);
 			
 			// Stop the template from printing

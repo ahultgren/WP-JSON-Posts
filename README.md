@@ -42,6 +42,11 @@ those found in the returned data. Multiple values are dash-separated (-).
 Thus if you see that you don't need `the_post_thumbnail` or `custom_fields` you simply send 
 `&exclude=the_post_thumbnail-custom_fields`.
 
+###Exclude custom fields
+
+Sometimes you might only want some of the custom fields. Just use `&exclude_custom_fields=fieldname`.
+Multiple values are dash-separated just like in the case of exclude.
+
 ###Posts per page
 
 If you want a different number of posts returned than what the default wp_query would give you,
