@@ -56,6 +56,7 @@ if( !function_exists('wp_jsonposts_ti') ){
 					// This only accepts the taxonomy name.
 					if( isset($_GET['the_terms']) ){
 						$wanted_taxs = explode('-',htmlspecialchars($_GET['the_terms']));
+						$the_terms = array();
 						
 						// Some fulhack to remove the id-key of the taxonomy that rendered the information useless in jSON
 						foreach( $wanted_taxs as $tax ){
